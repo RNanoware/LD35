@@ -1,5 +1,6 @@
 import Board from './Board';
 import Cursor from './Cursor';
+import Game from './Game';
 
 var canvas = document.getElementById('canvas');
 canvas.height = 480;
@@ -69,5 +70,8 @@ b.setAll([
 
 var c = new Cursor(b, 1, 1, Cursor.side.UP);
 
-drawGrid(20);
-drawCursor(c, 20);
+// drawGrid(20);
+// drawCursor(c, 20);
+
+var game = new Game('canvas');
+game.run();

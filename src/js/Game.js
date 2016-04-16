@@ -23,16 +23,16 @@ export default class Game {
   update() {}
 
   draw() {
-    this.board.draw(this.context, 10, 20, 15, 25);
-  }
-
-  tick() {
-    this.update();
-    this.draw();
-    requestAnimationFrame(tick);
+    this.board.draw(this.context, 10, 20, 500, 400);
   }
 
   run() {
-    this.tick();
+    var self = this;
+    var tick = function() {
+      self.update();
+      self.draw();
+      requestAnimationFrame(tick);
+    }
+    tick();
   }
 }
