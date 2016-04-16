@@ -58,13 +58,14 @@ function drawCursor(cursor, cellSize) {
   context.stroke();
 }
 
-var b = new Board(32, 24, [
+var b = new Board(32, 24);
+b.setAll([
   {x: 1, y: 3},
   {x: 20, y: 3},
   {x: 1, y: 10},
   {x: 31, y: 23},
   {x: 0, y: 0}
-]);
+], 1);
 
 var c = new Cursor(b, 1, 1, Cursor.side.UP);
 
