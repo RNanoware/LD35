@@ -9,7 +9,10 @@
     "build": "npm-run-all build:*",
     "build:markup": "cp src/index.html dist",
     "build:script": "mkdir dist/js && browserify src/js/main.js -t babelify -o dist/js/main.js",
-    "test": "babel-tape-runner src/**/*-test.js | tap-spec"
+    "test": "babel-tape-runner src/**/*-test.js | tap-spec",
+    "watch": "sh -c 'watch \"npm-run-all -c --silent $0\" src -d'",
+    "serve": "http-server -p 9090 dist",
+    "dev": "npm-run-all --parallel \"watch build\" serve"
   },
   "repository": {
     "type": "git",
@@ -33,6 +36,7 @@
     "http-server": "^0.9.0",
     "npm-run-all": "^1.7.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "watch": "^0.17.1"
   }
 }
