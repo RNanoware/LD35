@@ -31,7 +31,7 @@ export default class Board {
     var cellHeight = h / this.row;
     for (let i = 0; i < this.col; i++) {
       for (let j = 0; j < this.row; j++) {
-        if (b.getIndex(i, j) === 1) {
+        if (this.getIndex(i, j) === 1) {
           context.fillRect(i*cellWidth, j*cellHeight, cellWidth, cellHeight);
         } else {
           context.strokeRect(i*cellWidth, j*cellHeight, cellWidth, cellHeight);

@@ -64,7 +64,7 @@ export default class Cursor {
   draw(context, x, y, cellWidth, cellHeight) {
     var xCorner = x + cellWidth * this.x;
     var yCorner = y + cellHeight * this.y;
-    switch (cursor.side) {
+    switch (this.side) {
       case Cursor.side.LEFT:
         var xStart = xCorner;
         var yStart = yCorner;
