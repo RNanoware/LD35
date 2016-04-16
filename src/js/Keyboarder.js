@@ -1,8 +1,8 @@
 export default class Keyboarder {
   constructor() {
     this.keyState = {};
-    window.onkeydown = e => this.keyState[e.keyCode] = true;
-    window.onkeyup = e => this.keyState[e.keyCode] = false;
+    window.addEventListener("keydown", e => this.keyState[e.keyCode] = true);
+    window.addEventListener("keyup", e => this.keyState[e.keyCode] = false);
   }
 
   isDown(keyCode) {
