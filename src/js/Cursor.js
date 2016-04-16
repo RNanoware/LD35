@@ -60,6 +60,44 @@ export default class Cursor {
       this.move(Cursor.side.DOWN);
     }
   }
+
+  draw(context, x, y, cellWidth, cellHeight) {
+    var xCorner = x + cellWidth * this.x;
+    var yCorner = y + cellHeight * this.y;
+    switch (cursor.side) {
+      case Cursor.side.LEFT:
+        var xStart = xCorner;
+        var yStart = yCorner;
+        var xEnd = xStart;
+        var yEnd = yCorner + cellHeight;
+        break;
+      case Cursor.side.RIGHT:
+        var xStart = xCorner + cellWidth;
+        var yStart = yCorner;
+        var xEnd = xStart;
+        var yEnd = yCorner + cellHeight;
+        break;
+      case Cursor.side.DOWN:
+        var xStart = xCorner;
+        var yStart = yCorner + cellHeight;
+        var xEnd = xCorner + cellWidth;
+        var yEnd = yStart;
+        break;
+      case Cursor.side.UP:
+        var xStart = xCorner;
+        var yStart = yCorner;
+        var xEnd = xCorner + cellWidth;
+        var yEnd = yStart;
+        break;
+    }
+    context.strokeStyle = "red";
+    context.lineWidth = 2;
+    context.beginPath();
+    context.moveTo(xStart, yStart);
+    context.lineTo(xEnd, yEnd);
+    context.closePath();
+    context.stroke();
+  }
 }
 
 Cursor.side = {
