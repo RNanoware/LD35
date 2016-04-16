@@ -1,0 +1,23 @@
+{
+  "name": "ld35",
+  "version": "0.1.0",
+  "description": "Neill Robson's entry into the Ludum Dare 35 Game Design Competition",
+  "main": "main.js",
+  "scripts": {
+    "test": "babel-tape-runner src/**/*-test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RNanoware/LD35.git"
+  },
+  "keywords": [
+    "shapeshift",
+    "game"
+  ],
+  "author": "Neill Robson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RNanoware/LD35/issues"
+  },
+  "homepage": "https://github.com/RNanoware/LD35#readme"
+}
