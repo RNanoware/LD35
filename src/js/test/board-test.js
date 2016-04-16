@@ -9,9 +9,12 @@ test('Board constructor', t => {
   ]);
   t.equal(10, b.row);
   t.equal(20, b.col);
-  t.equal(1, b.getIndex(4, 4));
-  t.equal(1, b.getIndex(8, 4));
-  t.equal(1, b.getIndex(5, 7));
-  t.equal(1, b.getIndex(5, 6));
+  t.equal(b.getIndex(4, 4), 1);
+  t.equal(b.getIndex(8, 4), 1);
+  t.equal(b.getIndex(5, 7), 1);
+  t.equal(b.getIndex(5, 6), 0);
+  t.equal(b.getIndex(5, 8), 0);
+  t.equal(b.getIndex(4, 7), 0);
+  t.equal(b.getIndex(6, 7), 0);
   t.end();
 });
