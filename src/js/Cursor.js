@@ -4,6 +4,7 @@ export default class Cursor {
     this.x = x;
     this.y = y;
     this.side = side;
+    this.next = null;
   }
 
   move(side) {
@@ -26,15 +27,41 @@ export default class Cursor {
             this.y--;
           break;
       }
+      passOver();
     } else {
+      if (side === this.side.opposite)
+        passOver();
       this.side = side;
     }
+  }
+
+  passOver(x = this.x, y = this.y) {
+    if (this.board.getIndex(x, y) === 1)
+      if (this.next !== null)
+        this.next.writeLastCell();
+    this.board.setIndex(x, y, 0);
+  }
+
+  writeLastCell() {
+    this.board.setIndex(this.x, this.y, 1);
   }
 }
 
 Cursor.side = {
-  LEFT: "left",
-  RIGHT: "right",
-  UP: "up",
-  DOWN: "down"
+  LEFT: {
+    name: "left",
+    opposite: Cursor.side.RIGHT;
+  },
+  RIGHT: {
+    name: "right",
+    opposite: Cursor.side.LEFT;
+  },
+  UP:{
+    name: "up",
+    opposite: Cursor.side.DOWN;
+  },
+  DOWN: {
+    name: "down",
+    opposite: Cursor.side.UP;
+  }
 };
