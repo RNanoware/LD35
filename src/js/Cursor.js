@@ -1,3 +1,5 @@
+import Keyboarder from "./Keyboarder";
+
 export default class Cursor {
   constructor(board, x = 0, y = 0, side = Cursor.side.LEFT) {
     this.board = board;
@@ -5,6 +7,7 @@ export default class Cursor {
     this.y = y;
     this.side = side;
     this.next = null;
+    this.kb = new Keyboarder();
   }
 
   move(side) {
@@ -44,6 +47,18 @@ export default class Cursor {
 
   writeLastCell() {
     this.board.setIndex(this.x, this.y, 1);
+  }
+
+  update() {
+    if (this.kb.isDown(Keyboarder.keys.LEFT)) {
+      this.move(Cursor.side.LEFT);
+    } else if (this.kb.isDown(Keyboarder.keys.RIGHT)) {
+      this.move(Cursor.side.RIGHT);
+    } else if (this.kb.isDown(Keyboarder.keys.UP)) {
+      this.move(Cursor.side.UP);
+    } else if (this.kb.isDown(Keyboarder.keys.DOWN)) {
+      this.move(Cursor.side.DOWN);
+    }
   }
 }
 

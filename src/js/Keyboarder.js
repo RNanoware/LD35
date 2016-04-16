@@ -10,7 +10,7 @@ export default class Keyboarder {
   }
 }
 
-Keyboarder.KEYS = {
+Keyboarder.key = {
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
