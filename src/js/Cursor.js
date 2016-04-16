@@ -64,19 +64,19 @@ export default class Cursor {
 
 Cursor.side = {
   LEFT: {
-    name: "left",
-    opposite: Cursor.side.RIGHT
+    name: "left"
   },
   RIGHT: {
-    name: "right",
-    opposite: Cursor.side.LEFT
+    name: "right"
   },
-  UP:{
-    name: "up",
-    opposite: Cursor.side.DOWN
+  UP: {
+    name: "up"
   },
   DOWN: {
-    name: "down",
-    opposite: Cursor.side.UP
+    name: "down"
   }
 };
+Cursor.side.LEFT.opposite = Cursor.side.RIGHT;
+Cursor.side.RIGHT.opposite = Cursor.side.LEFT;
+Cursor.side.UP.opposite = Cursor.side.DOWN;
+Cursor.side.DOWN.opposite = Cursor.side.UP;
