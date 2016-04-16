@@ -4,6 +4,9 @@
   "description": "Neill Robson's entry into the Ludum Dare 35 Game Design Competition",
   "main": "main.js",
   "scripts": {
+    "clean": "rm -rf dist && mkdir dist",
+    "prebuild": "npm run clean",
+    "build": "babel src -d dist",
     "test": "babel-tape-runner src/**/*-test.js | tap-spec"
   },
   "repository": {
