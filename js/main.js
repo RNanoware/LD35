@@ -6772,25 +6772,37 @@ var Cursor = function () {
         }
         switch (side) {
           case Cursor.side.LEFT:
-            if (this.x > 0) this.x--;
+            if (this.x > 0) {
+              this.x--;
+              this.passOver(side);
+            }
             break;
           case Cursor.side.RIGHT:
-            if (this.x < this.board.col - 1) this.x++;
+            if (this.x < this.board.col - 1) {
+              this.x++;
+              this.passOver(side);
+            }
             break;
           case Cursor.side.DOWN:
-            if (this.y < this.board.row - 1) this.y++;
+            if (this.y < this.board.row - 1) {
+              this.y++;
+              this.passOver(side);
+            }
             break;
           case Cursor.side.UP:
-            if (this.y > 0) this.y--;
+            if (this.y > 0) {
+              this.y--;
+              this.passOver(side);
+            }
             break;
         }
-        this.passOver(side);
+        // this.passOver(side);
       } else {
-        // Motions within a square
-        if (side === this.side.opposite) this.passOver(side);
-        this.disabled = false;
-        this.side = side;
-      }
+          // Motions within a square
+          if (side === this.side.opposite) this.passOver(side);
+          this.disabled = false;
+          this.side = side;
+        }
     }
   }, {
     key: "passOver",
@@ -6911,7 +6923,7 @@ var Game = function () {
 
     var canvas = document.getElementById(canvasId);
     this.width = canvas.width = 640;
-    this.height = canvas.height = 480;
+    this.height = canvas.height = 640;
 
     this.context = canvas.getContext('2d');
 
@@ -7003,6 +7015,10 @@ var Keyboarder = function () {
     window.addEventListener("keyup", function (e) {
       return _this.keyState[e.keyCode] = false;
     });
+    document.onkeydown = function (e) {
+      var a = [37, 38, 39, 40];
+      if (a.indexOf(e.which) > -1) e.preventDefault();
+    };
   }
 
   _createClass(Keyboarder, [{

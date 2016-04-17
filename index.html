@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Ludum Dare 35</title>
+  <style>
+    canvas, h1, h2 {
+      margin: auto;
+      display: block;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <h1>A Cursor-y Attempt</h1>
+  <h2>Neill Robson's Ludum Dare 35 submission</h2>
   <canvas id="canvas"></canvas>
+  <p>This game is all about using cursors (those small red highlights on the grid lines) to shift blocks of color into a meaningful orientation.
+  Cursors are controlled with the arrow keys. When a cursor moves over a color block, it will send the block to the other side of a receiving cursor in another grid.
+  If you are capable of maneuvering every block in the top-left grid onto the proper highlighted squares on the bottom right, you win!</p>
+  <hr>
+  <p>This Ludum Dare competition is the first that I've ever participated in. I made many, many mistakes, including making the choice of using Javascript. Having never
+    designed a game before in the language, I spent far too much of my time learning all of the nuances and idiosyncracies of Javascript's design patterns when I could have
+    chosen a much more comfortable environment such as Java. Even so, the thrill of actually completing a game, from mental conception to final product, in 48 hours has been an
+  exhilarating and empowering experience, and one that I hope to take advantage of again in the future!</p>
+  <p>For those interested in the technologies used, the entire game was designed in pure ES6 Javascript using no external assets (I never had the time to make any). The full
+  source code is available on <a href="http://github.com/RNanoware/LD35">Github</a> for your perusing convenience!</p>
   <script src="js/main.js"></script>
 </body>
 </html>
