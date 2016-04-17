@@ -54,23 +54,31 @@ export default class Cursor {
       }
       switch (side) {
         case Cursor.side.LEFT:
-          if (this.x > 0)
+          if (this.x > 0) {
             this.x--;
+            this.passOver(side);
+          }
           break;
         case Cursor.side.RIGHT:
-          if (this.x < this.board.col - 1)
+          if (this.x < this.board.col - 1) {
             this.x++;
+            this.passOver(side);
+          }
           break;
         case Cursor.side.DOWN:
-          if (this.y < this.board.row - 1)
+          if (this.y < this.board.row - 1) {
             this.y++;
+            this.passOver(side);
+          }
           break;
         case Cursor.side.UP:
-          if (this.y > 0)
+          if (this.y > 0) {
             this.y--;
+            this.passOver(side);
+          }
           break;
       }
-      this.passOver(side);
+      // this.passOver(side);
     } else {
       // Motions within a square
       if (side === this.side.opposite)
