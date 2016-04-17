@@ -8,8 +8,8 @@ export default class Cursor {
     this.x = x;
     this.y = y;
     this.side = side;
-    // The cursor that this cursor feeds
-    this.next = null;
+    // The cursors that this cursor feeds
+    this.next = {};
     // Keyboard input
     this.kb = new Keyboarder();
     this.takingInput = false;
@@ -18,6 +18,13 @@ export default class Cursor {
     // Allowed movements
     this.moveX = this.moveY = true;
     this.disabled = false;
+  }
+
+  setNext(cursor, ...sides) {
+    if (sides.length === 0)
+      sides = Cursor.side;
+    for (let s in sides)
+      this.next[sides[s].name] = cursor;
   }
 
   move(side) {
@@ -63,21 +70,21 @@ export default class Cursor {
             this.y--;
           break;
       }
-      this.passOver();
+      this.passOver(side);
     } else {
       // Motions within a square
       if (side === this.side.opposite)
-        this.passOver();
+        this.passOver(side);
       this.disabled = false;
       this.side = side;
     }
   }
 
-  passOver(x = this.x, y = this.y) {
-    if (this.board.getIndex(x, y) === 1)
-      if (this.next !== null)
-        this.next.blockReceived = true;
-    this.board.setIndex(x, y, 0);
+  passOver(side) {
+    if (this.board.getIndex(this.x, this.y) === 1)
+      if (this.next[side.name] !== undefined)
+        this.next[side.name].blockReceived = true;
+    this.board.setIndex(this.x, this.y, 0);
   }
 
   update() {

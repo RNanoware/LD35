@@ -23,10 +23,11 @@ export default class Game {
     var cursor2 = new Cursor(board2, 0, 0, Cursor.side.UP);
     var cursor3 = new Cursor(board3, 0, 0, Cursor.side.UP);
     var cursor4 = new Cursor(board4, 0, 0, Cursor.side.LEFT);
-    cursor1.next = cursor2;
-    cursor2.next = cursor3;
-    cursor3.next = cursor4;
-    cursor4.next = cursor1;
+    cursor1.setNext(cursor2, Cursor.side.UP, Cursor.side.DOWN);
+    cursor1.setNext(cursor4, Cursor.side.LEFT, Cursor.side.RIGHT);
+    cursor2.setNext(cursor3);
+    cursor4.setNext(cursor3);
+    cursor3.setNext(cursor1);
 
     cursor2.moveX = false;
     cursor4.moveY = false;
