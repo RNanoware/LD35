@@ -1,5 +1,3 @@
-import Board from './Board';
-import Cursor from './Cursor';
 import Level from './Level';
 
 export default class Game {
