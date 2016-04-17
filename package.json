@@ -4,8 +4,8 @@
   "description": "Neill Robson's entry into the Ludum Dare 35 Game Design Competition",
   "main": "main.js",
   "scripts": {
-    "clean": "rm -rf dist && mkdir dist",
-    "prebuild": "npm run clean",
+    "clean": "rimraf 'dist/!(.git)'",
+    "prebuild": "npm run clean && [ -d dist ] || mkdir dist",
     "build": "npm-run-all build:*",
     "build:markup": "cp src/index.html dist",
     "build:script": "mkdir dist/js && browserify src/js/main.js -t babelify -o dist/js/main.js",
@@ -38,6 +38,7 @@
     "browserify": "^13.0.0",
     "http-server": "^0.9.0",
     "npm-run-all": "^1.7.0",
+    "rimraf": "^2.5.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1",
     "watch": "^0.17.1"
