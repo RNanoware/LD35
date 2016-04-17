@@ -9,24 +9,70 @@ export default class Game {
 
     this.context = canvas.getContext('2d');
 
-    this.board = new Board(20, 20);
-    this.board.setAll([
+    this.boards = [];
+    var board1 = new Board(10, 10);
+    var board2 = new Board(10, 10);
+    var board3 = new Board(10, 10);
+    var board4 = new Board(10, 10);
+
+    var cursor1 = new Cursor(board1, 3, 3, Cursor.side.TOP);
+    var cursor2 = new Cursor(board2, 3, 3, Cursor.side.TOP);
+    var cursor3 = new Cursor(board3, 3, 3, Cursor.side.TOP);
+    var cursor4 = new Cursor(board4, 3, 3, Cursor.side.TOP);
+    cursor1.next = cursor2;
+    cursor2.next = cursor3;
+    cursor3.next = cursor4;
+    cursor4.next = cursor1;
+
+    board1.addCursor(cursor1);
+    board2.addCursor(cursor2);
+    board3.addCursor(cursor3);
+    board4.addCursor(cursor4);
+
+    board1.setAll([
       {x: 1, y: 3},
-      {x: 19, y: 3},
-      {x: 1, y: 10},
-      {x: 11, y: 18},
+      {x: 9, y: 3},
+      {x: 1, y: 0},
+      {x: 1, y: 8},
       {x: 0, y: 0}
     ], 1);
-    this.board.addCursor(new Cursor(this.board, 3, 3, Cursor.side.LEFT));
+
+    this.boards.push({
+      board: board1,
+      x: 0,
+      y: 0,
+      w: 200,
+      h: 200
+    }, {
+      board: board2,
+      x: 210,
+      y: 0,
+      w: 200,
+      h: 200
+    }, {
+      board: board3,
+      x: 210,
+      y: 210,
+      w: 200,
+      h: 200
+    }, {
+      board: board4,
+      x: 0,
+      y: 210,
+      w: 200,
+      h: 200
+    });
   }
 
   update() {
-    this.board.update();
+    for (let b of this.boards)
+      b.board.update();
   }
 
   draw() {
     this.context.clearRect(0, 0, this.width, this.height);
-    this.board.draw(this.context, 10, 20, 500, 400);
+    for (let b of this.boards)
+      b.board.draw(this.context, b.x, b.y, b.w, b.h);
   }
 
   run() {
