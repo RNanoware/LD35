@@ -10,13 +10,38 @@ export default class Game {
 
     this.context = canvas.getContext('2d');
 
+    var trunk = "#7F5908";
+    var leaf = "#36A31D";
+    var apple = "#DE2E32";
     var goalBoard = new Array(9);
     for (let i = 0; i < goalBoard.length; i++)
       goalBoard[i] = new Array(9).fill(null);
-    goalBoard[2][3] = "#FF0000";
-    goalBoard[6][3] = "#FF00FF";
-    goalBoard[2][7] = "#FF0F0F";
-    goalBoard[8][6] = "#FFFF00";
+    goalBoard[0][2] = leaf;
+    goalBoard[0][3] = leaf;
+    goalBoard[0][4] = leaf;
+    goalBoard[0][5] = leaf;
+    goalBoard[0][6] = leaf;
+    goalBoard[1][1] = leaf;
+    goalBoard[1][7] = leaf;
+    goalBoard[2][1] = leaf;
+    goalBoard[2][7] = leaf;
+    goalBoard[3][2] = leaf;
+    goalBoard[3][3] = leaf;
+    goalBoard[3][5] = leaf;
+    goalBoard[3][6] = leaf;
+    goalBoard[3][6] = leaf;
+    goalBoard[1][3] = apple;
+    goalBoard[2][6] = apple;
+    goalBoard[3][4] = trunk;
+    goalBoard[4][4] = trunk;
+    goalBoard[5][4] = trunk;
+    goalBoard[6][4] = trunk;
+    goalBoard[7][4] = trunk;
+    goalBoard[8][4] = trunk;
+    goalBoard[4][3] = trunk;
+    goalBoard[4][5] = trunk;
+    goalBoard[8][3] = trunk;
+    goalBoard[8][5] = trunk;
 
     this.level = new Level(this.width, this.height, goalBoard);
   }
