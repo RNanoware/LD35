@@ -39,4 +39,9 @@ export default class Board {
     if (typeof this.cursor !== 'undefined')
       this.cursor.draw(context, x, y, cellWidth, cellHeight);
   }
+
+  update() {
+    if (typeof this.cursor !== 'undefined')
+      this.cursor.update();
+  }
 }

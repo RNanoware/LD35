@@ -20,7 +20,9 @@ export default class Game {
     this.board.addCursor(new Cursor(this.board, 3, 3, Cursor.side.LEFT));
   }
 
-  update() {}
+  update() {
+    this.board.update();
+  }
 
   draw() {
     this.board.draw(this.context, 10, 20, 500, 400);

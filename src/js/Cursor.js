@@ -30,10 +30,10 @@ export default class Cursor {
             this.y--;
           break;
       }
-      passOver();
+      this.passOver();
     } else {
       if (side === this.side.opposite)
-        passOver();
+        this.passOver();
       this.side = side;
     }
   }
@@ -50,13 +50,13 @@ export default class Cursor {
   }
 
   update() {
-    if (this.kb.isDown(Keyboarder.keys.LEFT)) {
+    if (this.kb.isDown(Keyboarder.key.LEFT)) {
       this.move(Cursor.side.LEFT);
-    } else if (this.kb.isDown(Keyboarder.keys.RIGHT)) {
+    } else if (this.kb.isDown(Keyboarder.key.RIGHT)) {
       this.move(Cursor.side.RIGHT);
-    } else if (this.kb.isDown(Keyboarder.keys.UP)) {
+    } else if (this.kb.isDown(Keyboarder.key.UP)) {
       this.move(Cursor.side.UP);
-    } else if (this.kb.isDown(Keyboarder.keys.DOWN)) {
+    } else if (this.kb.isDown(Keyboarder.key.DOWN)) {
       this.move(Cursor.side.DOWN);
     }
   }
