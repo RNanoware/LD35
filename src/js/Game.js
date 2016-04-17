@@ -10,6 +10,10 @@ export default class Game {
     this.context = canvas.getContext('2d');
 
     this.boards = [];
+    // Board 1: Top left
+    // Board 2: Top right
+    // Board 3: Bottom right
+    // Board 4: Bottom left
     var board1 = new Board(10, 10);
     var board2 = new Board(10, 10);
     var board3 = new Board(10, 10);
@@ -23,6 +27,9 @@ export default class Game {
     cursor2.next = cursor3;
     cursor3.next = cursor4;
     cursor4.next = cursor1;
+
+    cursor2.moveX = false;
+    cursor4.moveY = false;
 
     board1.addCursor(cursor1);
     board2.addCursor(cursor2);

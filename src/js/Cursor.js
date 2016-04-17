@@ -2,19 +2,37 @@ import Keyboarder from "./Keyboarder";
 
 export default class Cursor {
   constructor(board, x = 0, y = 0, side = Cursor.side.LEFT) {
+    // The board that this cursor occupies
     this.board = board;
+    // The cursor's location
     this.x = x;
     this.y = y;
     this.side = side;
+    // The cursor that this cursor feeds
     this.next = null;
+    // Keyboard input
     this.kb = new Keyboarder();
     this.takingInput = false;
+    // If this cursor is receiving a block
     this.blockReceived = false;
+    // Allowed movements
+    this.moveX = this.moveY = true;
   }
 
   move(side) {
+    // Don't move if a key is being held down
     if (this.takingInput)
       return;
+    // Don't move if the move is not allowed
+    if (!this.moveX && (
+        side === Cursor.side.RIGHT ||
+        side === Cursor.side.LEFT))
+      return;
+    if (!this.moveY && (
+        side === Cursor.side.UP ||
+        side === Cursor.side.DOWN))
+      return;
+    // Motions to different grid squares
     if (side === this.side) {
       switch (side) {
         case Cursor.side.LEFT:
@@ -36,6 +54,7 @@ export default class Cursor {
       }
       this.passOver();
     } else {
+      // Motions within a square
       if (side === this.side.opposite)
         this.passOver();
       this.side = side;
