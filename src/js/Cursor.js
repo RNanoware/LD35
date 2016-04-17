@@ -8,9 +8,12 @@ export default class Cursor {
     this.side = side;
     this.next = null;
     this.kb = new Keyboarder();
+    this.takingInput = false;
   }
 
   move(side) {
+    if (this.takingInput)
+      return;
     if (side === this.side) {
       switch (side) {
         case Cursor.side.LEFT:
@@ -52,12 +55,18 @@ export default class Cursor {
   update() {
     if (this.kb.isDown(Keyboarder.key.LEFT)) {
       this.move(Cursor.side.LEFT);
+      this.takingInput = true;
     } else if (this.kb.isDown(Keyboarder.key.RIGHT)) {
       this.move(Cursor.side.RIGHT);
+      this.takingInput = true;
     } else if (this.kb.isDown(Keyboarder.key.UP)) {
       this.move(Cursor.side.UP);
+      this.takingInput = true;
     } else if (this.kb.isDown(Keyboarder.key.DOWN)) {
       this.move(Cursor.side.DOWN);
+      this.takingInput = true;
+    } else {
+      this.takingInput = false;
     }
   }
 
