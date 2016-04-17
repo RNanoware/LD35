@@ -20,9 +20,9 @@ export default class Board {
     this.grid[y][x] = val;
   }
 
-  setAll(indices, val) {
-    for (let pair of indices)
-      this.setIndex(pair.x, pair.y, val);
+  setAll(locations) {
+    for (let loc of locations)
+      this.setIndex(loc.x, loc.y, loc.val);
   }
 
   addCursor(c) {

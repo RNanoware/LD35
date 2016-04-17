@@ -1,5 +1,6 @@
 import Board from './Board';
 import Cursor from './Cursor';
+import Level from './Level';
 
 export default class Game {
   constructor(canvasId) {
@@ -17,78 +18,15 @@ export default class Game {
     goalBoard[2][7] = "#FF0F0F";
     goalBoard[8][6] = "#FFFF00";
 
-    this.boards = [];
-    // Board 1: Top left
-    // Board 2: Top right
-    // Board 3: Bottom right
-    // Board 4: Bottom left
-    var board1 = new Board(9, 9);
-    var board2 = new Board(9, 1);
-    var board3 = new Board(9, 9, goalBoard);
-    var board4 = new Board(1, 9);
-
-    var cursor1 = new Cursor(board1, 0, 0, Cursor.side.UP);
-    var cursor2 = new Cursor(board2, 0, 0, Cursor.side.UP);
-    var cursor3 = new Cursor(board3, 0, 0, Cursor.side.UP);
-    var cursor4 = new Cursor(board4, 0, 0, Cursor.side.LEFT);
-    cursor1.setNext(cursor2, Cursor.side.UP, Cursor.side.DOWN);
-    cursor1.setNext(cursor4, Cursor.side.LEFT, Cursor.side.RIGHT);
-    cursor2.setNext(cursor3);
-    cursor4.setNext(cursor3);
-    cursor3.setNext(cursor1);
-
-    cursor2.moveX = false;
-    cursor4.moveY = false;
-
-    board1.addCursor(cursor1);
-    board2.addCursor(cursor2);
-    board3.addCursor(cursor3);
-    board4.addCursor(cursor4);
-
-    board1.setAll([
-      {x: 1, y: 3},
-      {x: 9, y: 3},
-      {x: 1, y: 0},
-      {x: 1, y: 8},
-      {x: 0, y: 0}
-    ], "#FF8800");
-
-    this.boards.push({
-      board: board1,
-      x: 10,
-      y: 10,
-      w: 180,
-      h: 180
-    }, {
-      board: board2,
-      x: 280,
-      y: 10,
-      w: 20,
-      h: 180
-    }, {
-      board: board3,
-      x: 200,
-      y: 200,
-      w: 180,
-      h: 180
-    }, {
-      board: board4,
-      x: 10,
-      y: 280,
-      w: 180,
-      h: 20
-    });
+    this.level = new Level(this.width, this.height, goalBoard);
   }
 
   update() {
-    for (let b of this.boards)
-      b.board.update();
+    this.level.update();
   }
 
   draw() {
-    this.context.clearRect(0, 0, this.width, this.height);
-    for (let b of this.boards)
-      b.board.draw(this.context, b.x, b.y, b.w, b.h);
+    this.level.draw(this.context);
   }
 
   run() {
