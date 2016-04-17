@@ -9,6 +9,7 @@ export default class Cursor {
     this.next = null;
     this.kb = new Keyboarder();
     this.takingInput = false;
+    this.blockReceived = false;
   }
 
   move(side) {
@@ -44,12 +45,8 @@ export default class Cursor {
   passOver(x = this.x, y = this.y) {
     if (this.board.getIndex(x, y) === 1)
       if (this.next !== null)
-        this.next.writeLastCell();
+        this.next.blockReceived = true;
     this.board.setIndex(x, y, 0);
-  }
-
-  writeLastCell() {
-    this.board.setIndex(this.x, this.y, 1);
   }
 
   update() {
@@ -67,6 +64,10 @@ export default class Cursor {
       this.takingInput = true;
     } else {
       this.takingInput = false;
+    }
+    if (this.blockReceived) {
+      this.board.setIndex(this.x, this.y, 1);
+      this.blockReceived = false;
     }
   }
 
