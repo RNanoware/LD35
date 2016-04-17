@@ -40,7 +40,7 @@ export default class Board {
           context.fillStyle = this.getIndex(i, j);
           context.fillRect(x + i*cellWidth, y + j*cellHeight, cellWidth, cellHeight);
         } else if (this.getGoalIndex(i, j) !== null) {
-          context.fillStyle = this.hexToRgb(this.getGoalIndex(i, j));
+          context.fillStyle = Board.hexToRgb(this.getGoalIndex(i, j));
           context.fillRect(x + i*cellWidth, y + j*cellHeight, cellWidth, cellHeight);
         }
         context.strokeRect(x + i*cellWidth, y + j*cellHeight, cellWidth, cellHeight);
@@ -50,22 +50,18 @@ export default class Board {
       this.cursor.draw(context, x, y, cellWidth, cellHeight);
   }
 
-  hexToRgb(hex) {
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-      return r + r + g + g + b + b;
-    });
-    var resultArray = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    var resultObj = {
-      r: parseInt(resultArray[1], 16),
-      g: parseInt(resultArray[2], 16),
-      b: parseInt(resultArray[3], 16)
-    };
-    return `rgba(${resultObj.r},${resultObj.g},${resultObj.b},0.25)`;
-  }
-
   update() {
     if (typeof this.cursor !== 'undefined')
       this.cursor.update();
   }
+}
+
+Board.hexToRgb = function(hex) {
+  var resultArray = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  var resultObj = {
+    r: parseInt(resultArray[1], 16),
+    g: parseInt(resultArray[2], 16),
+    b: parseInt(resultArray[3], 16)
+  };
+  return `rgba(${resultObj.r},${resultObj.g},${resultObj.b},0.25)`;
 }
