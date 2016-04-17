@@ -9,6 +9,14 @@ export default class Game {
 
     this.context = canvas.getContext('2d');
 
+    var goalBoard = new Array(9);
+    for (let i = 0; i < goalBoard.length; i++)
+      goalBoard[i] = new Array(9).fill(null);
+    goalBoard[2][3] = "#FF0000";
+    goalBoard[6][3] = "#FF00FF";
+    goalBoard[2][7] = "#FF0F0F";
+    goalBoard[8][6] = "#FFFF00";
+
     this.boards = [];
     // Board 1: Top left
     // Board 2: Top right
@@ -16,7 +24,7 @@ export default class Game {
     // Board 4: Bottom left
     var board1 = new Board(9, 9);
     var board2 = new Board(9, 1);
-    var board3 = new Board(9, 9);
+    var board3 = new Board(9, 9, goalBoard);
     var board4 = new Board(1, 9);
 
     var cursor1 = new Cursor(board1, 0, 0, Cursor.side.UP);
