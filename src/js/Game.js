@@ -4,8 +4,8 @@ import Cursor from './Cursor';
 export default class Game {
   constructor(canvasId) {
     var canvas = document.getElementById(canvasId);
-    canvas.width = 640;
-    canvas.height = 480;
+    this.width = canvas.width = 640;
+    this.height = canvas.height = 480;
 
     this.context = canvas.getContext('2d');
 
@@ -25,6 +25,7 @@ export default class Game {
   }
 
   draw() {
+    this.context.clearRect(0, 0, this.width, this.height);
     this.board.draw(this.context, 10, 20, 500, 400);
   }
 
