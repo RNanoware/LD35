@@ -4,7 +4,7 @@ export default class Game {
   constructor(canvasId) {
     var canvas = document.getElementById(canvasId);
     this.width = canvas.width = 640;
-    this.height = canvas.height = 480;
+    this.height = canvas.height = 640;
 
     this.context = canvas.getContext('2d');
 
