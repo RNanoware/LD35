@@ -13,8 +13,8 @@ export default class Cursor {
     // Keyboard input
     this.kb = new Keyboarder();
     this.takingInput = false;
-    // If this cursor is receiving a block
-    this.blockReceived = false;
+    // Storage space for any blocks being passed in from other cursors
+    this.blockReceived = null;
     // Allowed movements
     this.moveX = this.moveY = true;
     this.disabled = false;
@@ -81,10 +81,11 @@ export default class Cursor {
   }
 
   passOver(side) {
-    if (this.board.getIndex(this.x, this.y) === 1)
+    var block = this.board.getIndex(this.x, this.y);
+    if (block !== null)
       if (this.next[side.name] !== undefined)
-        this.next[side.name].blockReceived = true;
-    this.board.setIndex(this.x, this.y, 0);
+        this.next[side.name].blockReceived = block;
+    this.board.setIndex(this.x, this.y, null);
   }
 
   update() {
@@ -103,9 +104,9 @@ export default class Cursor {
     } else {
       this.takingInput = false;
     }
-    if (this.blockReceived) {
-      this.board.setIndex(this.x, this.y, 1);
-      this.blockReceived = false;
+    if (this.blockReceived !== null) {
+      this.board.setIndex(this.x, this.y, this.blockReceived);
+      this.blockReceived = null;
     }
   }
 

@@ -43,7 +43,7 @@ export default class Game {
       {x: 1, y: 0},
       {x: 1, y: 8},
       {x: 0, y: 0}
-    ], 1);
+    ], "#FF8800");
 
     this.boards.push({
       board: board1,

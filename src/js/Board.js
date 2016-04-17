@@ -4,7 +4,7 @@ export default class Board {
     this.col = col;
     this.grid = new Array(row);
     for (let i = 0; i < this.grid.length; i++)
-      this.grid[i] = new Array(col).fill(0);
+      this.grid[i] = new Array(col).fill(null);
   }
 
   getIndex(x, y) {
@@ -27,13 +27,14 @@ export default class Board {
   draw(context, x, y, w, h) {
     context.strokeStyle = "gray";
     context.lineWidth = 1;
-    context.fillStyle = "black";
     var cellWidth = w / this.col;
     var cellHeight = h / this.row;
     for (let i = 0; i < this.col; i++) {
       for (let j = 0; j < this.row; j++) {
-        if (this.getIndex(i, j) === 1)
+        if (this.getIndex(i, j) !== null) {
+          context.fillStyle = this.getIndex(i, j);
           context.fillRect(x + i*cellWidth, y + j*cellHeight, cellWidth, cellHeight);
+        }
         context.strokeRect(x + i*cellWidth, y + j*cellHeight, cellWidth, cellHeight);
       }
     }
