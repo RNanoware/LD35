@@ -26,6 +26,7 @@ export default class Board {
 
   draw(context, x, y, w, h) {
     context.strokeStyle = "gray";
+    context.lineWidth = 1;
     context.fillStyle = "black";
     var cellWidth = w / this.col;
     var cellHeight = h / this.row;
