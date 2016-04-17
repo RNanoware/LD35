@@ -17,6 +17,7 @@ export default class Cursor {
     this.blockReceived = false;
     // Allowed movements
     this.moveX = this.moveY = true;
+    this.disabled = false;
   }
 
   move(side) {
@@ -26,14 +27,24 @@ export default class Cursor {
     // Don't move if the move is not allowed
     if (!this.moveX && (
         side === Cursor.side.RIGHT ||
-        side === Cursor.side.LEFT))
+        side === Cursor.side.LEFT)) {
+      this.disabled = true;
       return;
+    }
     if (!this.moveY && (
         side === Cursor.side.UP ||
-        side === Cursor.side.DOWN))
+        side === Cursor.side.DOWN)) {
+      this.disabled = true;
       return;
+    }
     // Motions to different grid squares
     if (side === this.side) {
+      // If returning from disabled state, delay a move so that other
+      // cursors can "catch up"
+      if (this.disabled) {
+        this.disabled = false;
+        return;
+      }
       switch (side) {
         case Cursor.side.LEFT:
           if (this.x > 0)
@@ -57,6 +68,7 @@ export default class Cursor {
       // Motions within a square
       if (side === this.side.opposite)
         this.passOver();
+      this.disabled = false;
       this.side = side;
     }
   }

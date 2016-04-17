@@ -19,10 +19,10 @@ export default class Game {
     var board3 = new Board(9, 9);
     var board4 = new Board(1, 9);
 
-    var cursor1 = new Cursor(board1, 0, 0, Cursor.side.TOP);
-    var cursor2 = new Cursor(board2, 0, 0, Cursor.side.TOP);
-    var cursor3 = new Cursor(board3, 0, 0, Cursor.side.TOP);
-    var cursor4 = new Cursor(board4, 0, 0, Cursor.side.TOP);
+    var cursor1 = new Cursor(board1, 0, 0, Cursor.side.UP);
+    var cursor2 = new Cursor(board2, 0, 0, Cursor.side.UP);
+    var cursor3 = new Cursor(board3, 0, 0, Cursor.side.UP);
+    var cursor4 = new Cursor(board4, 0, 0, Cursor.side.LEFT);
     cursor1.next = cursor2;
     cursor2.next = cursor3;
     cursor3.next = cursor4;
